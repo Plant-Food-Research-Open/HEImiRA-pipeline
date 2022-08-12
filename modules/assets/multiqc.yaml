@@ -1,0 +1,8 @@
+title: "My HEImiRAP study" # override me > nextflow.config.params.multiqc.title
+subtitle: "<span style='font-size: 0.75em;'>HEImiRAP MultiQC Report</span>"
+intro_text: >-
+    <span style='font-size: 0.75em;'>
+    <a href='https://github.com/pfrnz/#PUBLIC_GITHUB_REPO' target='_blank' title='GitHub Link'>GitHub</a>
+    |
+    <a href='#PUBLICATION_DOI' target='_blank' title='DOI Link'>DOI: XXX-XXX-XXX</a>
+    </span>
