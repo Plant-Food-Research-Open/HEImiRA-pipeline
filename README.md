@@ -6,8 +6,9 @@ _Host environment intersection miRNA annotation_ pipeline
 ## Summary
 
 ## Quick Start
+Setup and run the pipeline in 4 steps.
 
-### 1.  Prerequisites
+### 1. Prerequisites
 #### Hardware
 You'll need at least 16GB of available memory to run the pipeline (required for indexing the miRBase reference).
 
@@ -19,16 +20,18 @@ Install
 Install [`Singualrity`](https://www.sylabs.io/guides/3.0/user-guide/) (see this
 [tutorial](https://singularity-tutorial.github.io/01-installation/) )
 
-### 2. Get HEImiRA Pipeline
-Clone it from GitHub.
+### 2. Download HEImiRA Pipeline
+Download and extract the [latest release](https://github.com/PlantandFoodResearch/HEImiRA-pipeline/releases)
+of the pipeline from GitHub.
 
+e.g. on the Linux command line, you can use `curl` and `tar`.
 ```
-git clone <URL> heimira-pipeline
+curl -L https://github.com/PlantandFoodResearch/HEImiRA-pipeline/releases/download/v1.0/HEImiRA-pipeline-v1.0.tar.gz | tar xzv
 
-cd heimira-pipeline
+cd heimira-pipeline-v1.0
 ```
 
-### 4. Build BioPandas
+### 3. Build BioPandas
 BioPandas is a singularity container with BioPython and Pandas.
 
 The build script will build the `biopandas.sif` singularity image inside the
@@ -38,7 +41,7 @@ The build script will build the `biopandas.sif` singularity image inside the
 ./singularity/build.sh
 ```
 
-### 5. Run the pipeline
+### 4. Run the pipeline
 Run the pipeline, with a Nextflow report.
 
 `--input_files` defines the Fastq files to use as input to the pipeline.
