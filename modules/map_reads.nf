@@ -34,9 +34,6 @@ process star_align {
     memory params.max_memory
     // Override with extra time for STAR alignment
     time '6h'
-    // publishDir params.outdir, mode: 'link'
-
-    
 
     input:
     path readfq
@@ -57,6 +54,8 @@ process star_align {
     --alignEndsType EndToEnd \
     --twopassMode None \
     --alignIntronMax 1 \
+    --outFilterScoreMin $params.sam_qual \
+    --outFilterMismatchNmax $params.alignment_mismatch \
     --outSAMtype BAM SortedByCoordinate \
     --outStd BAM_SortedByCoordinate \
     --limitBAMsortRAM ${bam_mem_limit} \
@@ -104,6 +103,7 @@ process samtools_index {
     tag "Indexing bam: $bam"
     container 'https://depot.galaxyproject.org/singularity/samtools:1.12--hd5e65b6_0'
     cpus params.max_cpus
+    // publishDir "${params.outdir}/alignments"
 
     input:
     path bam
