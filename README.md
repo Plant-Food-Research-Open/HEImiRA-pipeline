@@ -2,8 +2,50 @@
 _Host environment intersection miRNA annotation_ pipeline
 
 ## Introduction
+HEImiRA (Host Environment Intersection miRNA Annotation) pipeline is built with
+Nextflow using singularity containers from the [Galaxy Project] and a custom
+python container, to annotate miRNAs represented in sRNA-Seq data against the
+[miRBase]() miRNA mature reference sequences.
 
 ## Summary
+### Input
+sRNA-Seq reads, `FASTQ` format, optionally gzipped.
+
+### Preprocessing
+Preparing the sRNA-Seq read data for alignment.
+
+ - Pre and post quality checking - [FASTQC]()
+ - Adaptor clipping - [cutadapt]()
+ - Filtering - [BBDUK]()
+
+### miRBase Tagging
+Prepare the miRBase reference for alignment - [`prepare_reference.py`](templates/prepare_reference.py) (HEImiRA script)
+
+ - miRBase reference sequences collapsed
+ - Taxonomic groups ascribed to collapsed sequences
+ - Sequences tagged by `target`, `host`, `environment`
+ - Create collapsed-sequence reference FASTA `heimeria_collapsed_reference.fa.gz`
+ - Create collapsed-sequence + taxonomy table `heimeria_metadata.csv.gz`
+
+### Alignment Analysis
+Align preprocessed sRNA-Seq reads to the HEImiRA collapsed miRBase reference
+and output alignment counts. 
+
+ - Align the reads to the reference - [STAR]()
+ - Process alignments - [`process_counts.py`](templates/process_counts.py) (HEImiRA script)
+ - Combine HEImiRA tags and taxonomic metadata with raw counts
+
+### Output
+HEImiRA pipeline outputs are in CSV format compatible with [Python Pandas]() for easy direct use or downstream analysis.
+
+The 3 output tables contain the HEImiRA tags and taxonomic metadata for each reference sequence. The alignment counts are represented differently in each table, as follows.
+
+ - HEImiRA counts summary table
+   - raw counts
+ - HEImiRA normalised counts summary table - HEImiRA tags, taxonomic metadata
+   - counts normalised by total counts per sample
+ - HEImiRA host-normalised counts summary table - HEImiRA tags, taxonomic metadata
+   - counts normalised by total host-tagged counts per sample
 
 ## Quick Start
 Setup and run the pipeline in 4 steps.
