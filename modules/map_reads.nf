@@ -57,7 +57,6 @@ process star_align {
     --alignEndsType EndToEnd \
     --twopassMode None \
     --alignIntronMax 1 \
-    --outReadsUnmapped Fastx \
     --outSAMtype BAM SortedByCoordinate \
     --outStd BAM_SortedByCoordinate \
     --limitBAMsortRAM ${bam_mem_limit} \
