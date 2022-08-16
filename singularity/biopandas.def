@@ -1,8 +1,5 @@
 Bootstrap: docker
 From: ubuntu:jammy
-
-Stage: build
-
 %post
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
