@@ -2,10 +2,18 @@
 _Host environment intersection miRNA annotation_ pipeline
 
 ## Introduction
-HEImiRA (Host Environment Intersection miRNA Annotation) pipeline is built with
-Nextflow using singularity containers from the [Galaxy Project] and a custom
-python container, to annotate miRNAs represented in sRNA-Seq data against the
-[miRBase](https://www.mirbase.org/) miRNA mature reference sequences.
+HEImiRA (Host Environment Intersection miRNA Annotation) pipeline annotates
+miRNAs from sRNA-Seq in relation to the taxonomy of a given host and target
+organism.
+
+The pipeline was designed and used for quantifying cross-kingdom miRNA
+transfer, but could be directly applied to host-pathogen sample miRNA
+annotation, and possibly other areas.
+
+HEImiRA pipeline is built with Nextflow using singularity containers from the
+[Galaxy Project] and a custom python container, to annotate miRNAs represented
+in sRNA-Seq data against the [miRBase](https://www.mirbase.org/) miRNA mature
+reference sequences.
 
 ## Summary
 ### Input
