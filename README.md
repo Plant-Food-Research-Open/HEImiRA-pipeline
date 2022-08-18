@@ -78,11 +78,23 @@ e.g. on the Linux command line, you can use `curl` and `tar`.
 ```
 curl -L https://github.com/PlantandFoodResearch/HEImiRA-pipeline/releases/download/v1.0/HEImiRA-pipeline-v1.0.tar.gz | tar xzv
 
-cd heimira-pipeline-v1.0
+cd heimira-pipeline
 ```
 
-### 3. Build BioPandas
-BioPandas is a singularity container with BioPython and Pandas.
+### 3. Obtain BioPandas
+BioPandas is a singularity container with Python-3.10, BioPython, PySam, and Pandas.
+
+You have 2 options, the first is by far the quickest.
+
+#### a. Use the container asset provided with the release
+*download size ~60MB*
+
+```
+curl -L https://github.com/PlantandFoodResearch/HEImiRA-pipeline/releases/download/v1.0/HEImiRA-biopandas-v1.0.gz | tar xzv -C singularity
+```
+
+#### b. Build the container
+_**WARNING:** the build process takes ~40 minutes_
 
 The build script will build the `biopandas.sif` singularity image inside the
 `./singularity` directory.
