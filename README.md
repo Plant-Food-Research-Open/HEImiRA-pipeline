@@ -76,7 +76,7 @@ of the pipeline from GitHub.
 
 e.g. on the Linux command line, you can use `curl` and `tar`.
 ```
-curl -L https://github.com/PlantandFoodResearch/HEImiRA-pipeline/releases/download/v1.0/HEImiRA-pipeline-v1.0.tar.gz | tar xzv
+curl -L https://github.com/PlantandFoodResearch/HEImiRA-pipeline/releases/download/v1.0/heimira-pipeline-v1.0.tar.gz | tar xzv
 
 cd heimira-pipeline
 ```
@@ -90,7 +90,7 @@ You have 2 options, the first is by far the quickest.
 *download size ~60MB*
 
 ```
-curl -L https://github.com/PlantandFoodResearch/HEImiRA-pipeline/releases/download/v1.0/HEImiRA-biopandas-v1.0.gz | tar xzv -C singularity
+curl -L https://github.com/PlantandFoodResearch/HEImiRA-pipeline/releases/download/v1.0/heimira-biopandas-v1.0.tar.gz | tar xzv --strip-components=1 -C singularity
 ```
 
 #### b. Build the container
