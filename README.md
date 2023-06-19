@@ -3,15 +3,15 @@ _Host environment intersection miRNA annotation_ pipeline
 
 ## Introduction
 HEImiRA (Host Environment Intersection miRNA Annotation) pipeline annotates
-miRNAs from sRNA-Seq in relation to the taxonomy of a given host and target
+microRNAs (miRNAs) from sRNA-Seq in relation to the taxonomy of a given host and target
 organism.
 
-The pipeline was designed and used for quantifying cross-kingdom miRNA
-transfer, but could be directly applied to host-pathogen sample miRNA
+The pipeline was designed to be used for quantifying cross-kingdom miRNA
+transfer but could be directly applied to host-pathogen sample miRNA
 annotation, and possibly other areas.
 
-HEImiRA pipeline is built with Nextflow using singularity containers from the
-[Galaxy Project] and a custom python container, to annotate miRNAs represented
+HEImiRA pipeline is built with Nextflow using Singularity containers from the
+[Galaxy Project] and a custom Python container, to annotate miRNAs represented
 in sRNA-Seq data against the [miRBase](https://www.mirbase.org/) miRNA mature
 reference sequences.
 
@@ -35,6 +35,8 @@ Prepare the miRBase reference for alignment - [`prepare_reference.py`](templates
  - Create collapsed-sequence reference FASTA `heimeria_collapsed_reference.fa.gz`
  - Create collapsed-sequence + taxonomy table `heimeria_metadata.csv.gz`
 
+NOTE: MiRNAs not found in either the target or host species are tagged as from the ‘environment’, while miRNAs that map to both the host and target species are tagged as ‘ambiguous’.
+
 ### Alignment
 Align preprocessed sRNA-Seq reads to the HEImiRA collapsed miRBase reference.
 
@@ -51,7 +53,7 @@ Apply HEImiRA tags and combine taxonomic metadata with alignment counts - [`proc
 HEImiRA pipeline outputs are in CSV format compatible with [Python Pandas](https://pandas.pydata.org/)
 for easy direct use or downstream analysis.
 
-The 3 output tables contain the HEImiRA tags and taxonomic metadata for each
+The three output tables contain the HEImiRA tags and taxonomic metadata for each
 reference sequence. The alignment counts are represented differently in each
 table, as follows.
 
@@ -63,11 +65,11 @@ table, as follows.
    - counts normalised by total host-tagged counts per sample
 
 ## Quick Start
-Setup and run the pipeline in 4 steps.
+Set up and run the pipeline in four steps.
 
 ### 1. Prerequisites
 #### Hardware
-You'll need at least 16GB of available memory to run the pipeline (required for
+You will need at least 16GB of available memory to run the pipeline (required for
 indexing the miRBase reference).
 
 #### Software
@@ -92,7 +94,7 @@ cd heimira-pipeline
 ### 3. Obtain BioPandas
 BioPandas is a singularity container with Python-3.10, BioPython, PySam, and Pandas.
 
-You have 2 options, the first is by far the quickest.
+You have two options, the first is by far the quickest.
 
 #### a. Use the container asset provided with the release
 *download size ~60MB*
@@ -145,3 +147,7 @@ is tiny so the test should run quickly.
 ```
 nextflow run -with-report heimira-test-report.html main.nf --outdir 'test-results' --input_files './test-data/*.fastq.gz' --host_organism 'homo sapiens' --target_organism 'Malus domestica'
 ```
+
+## About
+
+Host Environment Intersection miRNA Annotation pipeline
