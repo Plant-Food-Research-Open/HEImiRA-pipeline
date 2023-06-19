@@ -147,7 +147,3 @@ is tiny so the test should run quickly.
 ```
 nextflow run -with-report heimira-test-report.html main.nf --outdir 'test-results' --input_files './test-data/*.fastq.gz' --host_organism 'homo sapiens' --target_organism 'Malus domestica'
 ```
-
-## About
-
-Host Environment Intersection miRNA Annotation pipeline
